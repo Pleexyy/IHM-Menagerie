@@ -29,7 +29,7 @@ public class Menagerie {
 
     public String toString() {
         String chaine = "";
-        if (lesAnimaux.isEmpty()) {
+        if (this.lesAnimaux.isEmpty()) {
             chaine += "\nAucun animal présent dans la ménagerie \n";
         } else {
             for (int i = 0; i < this.lesAnimaux.size(); i++) {

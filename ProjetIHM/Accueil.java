@@ -4,16 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Accueil implements ActionListener {
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
     private JPanel monPanel;
     private JButton ajouter;
     private JButton supprimer;
     private JButton rechercher;
     private JButton afficher;
-    private JButton compte;
+    private JButton compter;
     private JButton quitter;
     private JLabel lblMenagerie;
     private JLabel lblAction;
@@ -48,6 +44,7 @@ public class Accueil implements ActionListener {
         supprimer.setFocusPainted(false);
         supprimer.setFont(new Font("Arial", Font.BOLD, 12));
         supprimer.setBounds(475, 150, 200, 40);
+        supprimer.addActionListener(this);
 
         rechercher = new JButton("Rechercher un animal");
         rechercher.setBackground(new Color(59, 89, 182));
@@ -55,7 +52,7 @@ public class Accueil implements ActionListener {
         rechercher.setFocusPainted(false);
         rechercher.setFont(new Font("Arial", Font.BOLD, 12));
         rechercher.setBounds(220, 225, 200, 40);
-        // rechercher.addActionListener(this);
+        rechercher.addActionListener(this);
 
         afficher = new JButton("Animaux présents");
         afficher.setBackground(new Color(59, 89, 182));
@@ -65,12 +62,13 @@ public class Accueil implements ActionListener {
         afficher.setBounds(475, 225, 200, 40);
         afficher.addActionListener(this);
 
-        compte = new JButton("Nombre d'animaux");
-        compte.setBackground(new Color(59, 89, 182));
-        compte.setForeground(Color.WHITE);
-        compte.setFocusPainted(false);
-        compte.setFont(new Font("Arial", Font.BOLD, 12));
-        compte.setBounds(350, 300, 200, 40);
+        compter = new JButton("Nombre d'animaux");
+        compter.setBackground(new Color(59, 89, 182));
+        compter.setForeground(Color.WHITE);
+        compter.setFocusPainted(false);
+        compter.setFont(new Font("Arial", Font.BOLD, 12));
+        compter.setBounds(350, 300, 200, 40);
+        compter.addActionListener(this);
 
         quitter = new JButton("Quitter");
         quitter.setBackground(new Color(59, 89, 182));
@@ -78,7 +76,7 @@ public class Accueil implements ActionListener {
         quitter.setFocusPainted(false);
         quitter.setFont(new Font("Arial", Font.BOLD, 12));
         quitter.setBounds(800, 423, 100, 40);
-        // quitter.addActionListener(this);
+        quitter.addActionListener(this);
 
         monPanel.add(lblMenagerie);
         monPanel.add(lblAction);
@@ -86,7 +84,7 @@ public class Accueil implements ActionListener {
         monPanel.add(supprimer);
         monPanel.add(rechercher);
         monPanel.add(afficher);
-        monPanel.add(compte);
+        monPanel.add(compter);
         monPanel.add(quitter);
 
     }
@@ -103,6 +101,15 @@ public class Accueil implements ActionListener {
             this.appMenagerie.afficherAjouter();
         } else if (source == afficher) {
             this.appMenagerie.afficher();
+        } else if (source == supprimer) {
+            this.appMenagerie.afficherSupprimer();
+        } else if (source == rechercher) {
+            this.appMenagerie.afficherRechercher();
+        } else if (source == compter) {
+            this.appMenagerie.afficherCompter();
+        } else {
+            this.appMenagerie.dispose();
+            System.exit(0);
         }
 
     }

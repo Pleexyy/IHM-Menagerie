@@ -1,5 +1,4 @@
 import javax.swing.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,10 +15,10 @@ public class AppMenagerie extends JFrame implements ActionListener {
         frame = new JFrame("IHM - Ménagerie");
         frame.setSize(900, 500);
         frame.setResizable(false);
-        
+
         Accueil accueil = new Accueil(this);
         JPanel panelAccueil = accueil.getJPanel();
-        
+
         frame.getContentPane().add(panelAccueil);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,14 +26,31 @@ public class AppMenagerie extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("act");
         System.out.println(e.getSource().toString());
     }
 
-    public void afficherAjouter () {
+    public void afficherAjouter() {
         Ajouter ajouter = new Ajouter(this);
         JPanel panelAjouter = ajouter.getJPanel();
         this.refreshPanel(panelAjouter);
+    }
+
+    public void afficherSupprimer() {
+        Supprimer supprimer = new Supprimer(this, menagerie.getAnimaux());
+        JPanel panelSupprimer = supprimer.getJPanel();
+        this.refreshPanel(panelSupprimer);
+    }
+
+    public void afficherRechercher() {
+        Rechercher rechercher = new Rechercher(this, menagerie.getAnimaux());
+        JPanel panelRechercher = rechercher.getJPanel();
+        this.refreshPanel(panelRechercher);
+    }
+
+    public void afficherCompter() {
+        Compteur compteur = new Compteur(this, menagerie.getAnimaux());
+        JPanel panelCompteur = compteur.getJPanel();
+        this.refreshPanel(panelCompteur);
     }
 
     public void retour() {
@@ -64,6 +80,19 @@ public class AppMenagerie extends JFrame implements ActionListener {
         menagerie.toString();
     }
 
+    public void supprimerAnimal(int index) {
+        menagerie.supprimerUnAnimal(index);
+        System.out.println(menagerie.toString());
+    }
+
+    public void rechercherAnimal(String nom) {
+        menagerie.rechercherUnAnimal(nom);
+        System.out.println(menagerie.toString());
+    }
+
+    public void compterAnimaux() {
+        menagerie.getNombreAnimaux();
+    }
     public static void main(String[] args) {
         new AppMenagerie();
     }

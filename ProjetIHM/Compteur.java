@@ -4,21 +4,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Afficher extends JFrame implements ActionListener {
+public class Compteur extends JFrame implements ActionListener {
     private JPanel monPanel;
     private AppMenagerie appMenagerie;
     private JButton retour;
-    private JScrollPane jsp;
     private JLabel label;
     /**
      *
      */
     private static final long serialVersionUID = 1L;
 
-    public Afficher(AppMenagerie appMenagerie, ArrayList<Animal> lesAnimaux) {
+    public Compteur(AppMenagerie appMenagerie, ArrayList<Animal> lesAnimaux) {
         this.appMenagerie = appMenagerie;
         monPanel = new JPanel();
         monPanel.setLayout(null);
+        monPanel.setBackground(Color.white);
 
         retour = new JButton("retour");
         retour.setBackground(new Color(59, 89, 182));
@@ -29,24 +29,16 @@ public class Afficher extends JFrame implements ActionListener {
         retour.addActionListener(this);
 
         if (!lesAnimaux.isEmpty()) {
-            for (int i = 0; i < lesAnimaux.size(); i++) {
-                label = new JLabel();
-                label.setText(i + " - " + lesAnimaux.get(i).toString());
-                label.setBounds(100, 100 + i * 20, 200, 40);
-                // jsp = new JScrollPane(label, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                //         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-                // jsp.setBounds(100, 100, 150, 150);
-                // jsp.setVisible(true);
-                monPanel.add(label);
-            }
+            label = new JLabel();
+            label.setText(" La ménagerie accueille actuellement " + lesAnimaux.size() + " animaux");
+            label.setBounds(325, 100, 350, 40);
+            monPanel.add(label);
         } else {
             label = new JLabel();
             label.setText("La ménagerie ne contient aucun animaux...");
             label.setBounds(300, 180, 350, 40);
-            // monPanel.add(label);
             monPanel.add(label);
         }
-        // monPanel.add(jsp);
         monPanel.add(retour);
     }
 
@@ -56,7 +48,8 @@ public class Afficher extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == retour) {
+        Object source = e.getSource();
+        if (source == retour) {
             this.appMenagerie.retour();
         }
     }

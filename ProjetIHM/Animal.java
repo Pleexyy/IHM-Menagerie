@@ -7,7 +7,10 @@ public class Animal {
         this.espece = uneEspece;
     }
 
-    public String getNom() {
+    public Animal() {
+	}
+
+	public String getNom() {
         return this.nom;
     }
 
