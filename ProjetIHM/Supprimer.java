@@ -3,12 +3,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Supprimer extends JFrame implements ActionListener {
     private JPanel monPanel;
     private AppMenagerie appMenagerie;
     private JButton retour, supprimer;
-    private JScrollPane jsp;
     private JLabel label, lblNum;
     private JTextField num;
     /**
@@ -18,8 +18,8 @@ public class Supprimer extends JFrame implements ActionListener {
 
     public Supprimer(AppMenagerie appMenagerie, ArrayList<Animal> lesAnimaux) {
         this.appMenagerie = appMenagerie;
-        monPanel = new JPanel();
-        monPanel.setLayout(null);
+        monPanel = new JPanel(new BorderLayout());
+        // monPanel.setLayout(null);
         monPanel.setBackground(Color.white);
 
         retour = new JButton("retour");
@@ -31,43 +31,41 @@ public class Supprimer extends JFrame implements ActionListener {
         retour.addActionListener(this);
 
         if (!lesAnimaux.isEmpty()) {
-            for (int i = 0; i < lesAnimaux.size(); i++) {
-                label = new JLabel();
-                label.setText(i + " - " + lesAnimaux.get(i).toString());
-                label.setBounds(325, 100 + i * 20, 200, 40);
-                // jsp = new JScrollPane(label, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                // JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-                // jsp.setBounds(100, 100, 150, 150);
-                // jsp.setVisible(true);
-                monPanel.add(label);
-            }
             lblNum = new JLabel("Numéro de l'animal à supprimer");
             lblNum.setFont(new Font("Arial", Font.BOLD, 14));
-            lblNum.setBounds(300, 50, 250, 40);
             num = new JTextField();
-            num.setBounds(300, 200, 200, 40);
+
+            List<String> labels = new ArrayList<>(25);
+            for (int i = 0; i < lesAnimaux.size(); i++) {
+                labels.add("Animal n°" + i + " : " + lesAnimaux.get(i).getNom().toString());
+            }
+            final JList<String> listArea = new JList<String>(labels.toArray(new String[labels.size()]));
+            listArea.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            listArea.setFont(new Font("Arial", Font.ITALIC, 14));
+            JScrollPane listScroller = new JScrollPane();
+            listScroller.setViewportView(listArea);
+            listArea.setLayoutOrientation(JList.VERTICAL);
+            monPanel.add(listScroller);
 
             supprimer = new JButton("supprimer");
-            supprimer.setBounds(300, 250, 200, 40);
+            supprimer.setBounds(350, 250, 200, 40);
             supprimer.setBackground(new Color(59, 89, 182));
             supprimer.setForeground(Color.WHITE);
             supprimer.setFocusPainted(false);
             supprimer.setFont(new Font("Arial", Font.BOLD, 12));
             supprimer.addActionListener(this);
 
-            monPanel.add(lblNum);
-            monPanel.add(num);
-            monPanel.add(supprimer);
+            monPanel.add(lblNum, BorderLayout.EAST);
+            monPanel.add(num, BorderLayout.NORTH);
+            monPanel.add(supprimer, BorderLayout.EAST);
         } else {
             label = new JLabel();
+            label.setHorizontalAlignment(JLabel.CENTER);
+            label.setVerticalAlignment(JLabel.CENTER);
             label.setText("La ménagerie ne contient aucun animaux...");
-            label.setBounds(300, 180, 350, 40);
-            // monPanel.add(label);
-            monPanel.add(label);
+            monPanel.add(label, BorderLayout.CENTER);
         }
-        // monPanel.add(jsp);
-
-        monPanel.add(retour);
+        monPanel.add(retour, BorderLayout.SOUTH);
     }
 
     public JPanel getJPanel() {

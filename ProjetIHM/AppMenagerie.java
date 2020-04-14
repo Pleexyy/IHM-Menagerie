@@ -39,6 +39,7 @@ public class AppMenagerie extends JFrame implements ActionListener {
         Supprimer supprimer = new Supprimer(this, menagerie.getAnimaux());
         JPanel panelSupprimer = supprimer.getJPanel();
         this.refreshPanel(panelSupprimer);
+
     }
 
     public void afficherRechercher() {
@@ -83,16 +84,19 @@ public class AppMenagerie extends JFrame implements ActionListener {
     public void supprimerAnimal(int index) {
         menagerie.supprimerUnAnimal(index);
         System.out.println(menagerie.toString());
+        this.afficherSupprimer();
     }
 
-    public void rechercherAnimal(String nom) {
+    public boolean rechercherAnimal(String nom) {
         menagerie.rechercherUnAnimal(nom);
-        System.out.println(menagerie.toString());
+        System.out.println(menagerie.rechercherUnAnimal(nom));
+        return menagerie.rechercherUnAnimal(nom);
     }
 
     public void compterAnimaux() {
         menagerie.getNombreAnimaux();
     }
+
     public static void main(String[] args) {
         new AppMenagerie();
     }

@@ -23,6 +23,7 @@ public class Accueil implements ActionListener {
         monPanel.setLayout(null);
 
         lblMenagerie = new JLabel("Bienvenue dans votre ménagerie !");
+        lblMenagerie.setForeground(Color.white);
         lblMenagerie.setFont(new Font("Arial", Font.BOLD, 18));
         lblMenagerie.setBounds(280, 0, 400, 50);
 

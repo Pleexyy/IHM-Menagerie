@@ -28,17 +28,17 @@ public class Compteur extends JFrame implements ActionListener {
         retour.setBounds(10, 10, 200, 40);
         retour.addActionListener(this);
 
-        if (!lesAnimaux.isEmpty()) {
-            label = new JLabel();
+        label = new JLabel();
+        label.setBounds(300, 180, 350, 40);
+
+        if (lesAnimaux.size() == 1) {
+            label.setText("La ménagerie accueille actuellement " + lesAnimaux.size() + " animal");
+        } else if (!lesAnimaux.isEmpty()) {
             label.setText(" La ménagerie accueille actuellement " + lesAnimaux.size() + " animaux");
-            label.setBounds(325, 100, 350, 40);
-            monPanel.add(label);
         } else {
-            label = new JLabel();
             label.setText("La ménagerie ne contient aucun animaux...");
-            label.setBounds(300, 180, 350, 40);
-            monPanel.add(label);
         }
+        monPanel.add(label);
         monPanel.add(retour);
     }
 

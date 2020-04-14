@@ -8,7 +8,6 @@ public class Rechercher extends JFrame implements ActionListener {
     private JPanel monPanel;
     private AppMenagerie appMenagerie;
     private JButton retour, rechercher;
-    private JScrollPane jsp;
     private JLabel label, lblNom;
     private JTextField nom;
     /**
@@ -33,12 +32,12 @@ public class Rechercher extends JFrame implements ActionListener {
         if (!lesAnimaux.isEmpty()) {
             lblNom = new JLabel("Nom de l'animal à rechercher");
             lblNom.setFont(new Font("Arial", Font.BOLD, 14));
-            lblNom.setBounds(300, 50, 250, 40);
+            lblNom.setBounds(325, 150, 250, 40);
             nom = new JTextField();
-            nom.setBounds(300, 200, 200, 40);
+            nom.setBounds(340, 200, 200, 40);
 
             rechercher = new JButton("rechercher");
-            rechercher.setBounds(300, 250, 200, 40);
+            rechercher.setBounds(340, 250, 200, 40);
             rechercher.setBackground(new Color(59, 89, 182));
             rechercher.setForeground(Color.WHITE);
             rechercher.setFocusPainted(false);
@@ -52,7 +51,6 @@ public class Rechercher extends JFrame implements ActionListener {
             label = new JLabel();
             label.setText("La ménagerie ne contient aucun animaux...");
             label.setBounds(300, 180, 350, 40);
-            // monPanel.add(label);
             monPanel.add(label);
         }
         monPanel.add(retour);
@@ -62,14 +60,49 @@ public class Rechercher extends JFrame implements ActionListener {
         return this.monPanel;
     }
 
+    private void displayGui(String lbl, int x) {
+        label = new JLabel();
+        label.setText(lbl);
+        label.setBounds(x, 170, 350, 40);
+        System.out.println(lbl);
+        lblNom = new JLabel("Nom de l'animal à rechercher");
+        lblNom.setFont(new Font("Arial", Font.BOLD, 14));
+        lblNom.setBounds(325, 150, 250, 40);
+        nom = new JTextField();
+        nom.setBounds(340, 200, 200, 40);
+
+        rechercher = new JButton("rechercher");
+        rechercher.setBounds(340, 250, 200, 40);
+        rechercher.setBackground(new Color(59, 89, 182));
+        rechercher.setForeground(Color.WHITE);
+        rechercher.setFocusPainted(false);
+        rechercher.setFont(new Font("Arial", Font.BOLD, 12));
+        rechercher.addActionListener(this);
+
+        monPanel.removeAll();
+        monPanel.add(lblNom);
+        monPanel.add(nom);
+        monPanel.add(rechercher);
+        monPanel.add(label);
+        monPanel.add(retour);
+        monPanel.revalidate();
+        monPanel.repaint();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if (source == retour) {
+            System.out.println("retour");
             this.appMenagerie.retour();
         } else if (source == rechercher) {
             String nomAnimal = nom.getText();
             this.appMenagerie.rechercherAnimal(nomAnimal);
+            if (this.appMenagerie.rechercherAnimal(nomAnimal) == true) {
+                displayGui("Animal trouvé !", 390);
+            } else {
+                displayGui("Cet animal n'est pas dans la ménagerie...", 290);
+            }
         }
     }
 }
