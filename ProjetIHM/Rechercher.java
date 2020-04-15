@@ -49,7 +49,7 @@ public class Rechercher extends JFrame implements ActionListener {
             monPanel.add(rechercher);
         } else {
             label = new JLabel();
-            label.setText("La ménagerie ne contient aucun animaux...");
+            label.setText("La ménagerie ne contient aucun animal...");
             label.setBounds(300, 180, 350, 40);
             monPanel.add(label);
         }
@@ -64,7 +64,6 @@ public class Rechercher extends JFrame implements ActionListener {
         label = new JLabel();
         label.setText(lbl);
         label.setBounds(x, 170, 350, 40);
-        System.out.println(lbl);
         lblNom = new JLabel("Nom de l'animal à rechercher");
         lblNom.setFont(new Font("Arial", Font.BOLD, 14));
         lblNom.setBounds(325, 150, 250, 40);
@@ -93,10 +92,9 @@ public class Rechercher extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if (source == retour) {
-            System.out.println("retour");
             this.appMenagerie.retour();
         } else if (source == rechercher) {
-            String nomAnimal = nom.getText();
+            String nomAnimal = nom.getText().toLowerCase();
             this.appMenagerie.rechercherAnimal(nomAnimal);
             if (this.appMenagerie.rechercherAnimal(nomAnimal) == true) {
                 displayGui("Animal trouvé !", 390);

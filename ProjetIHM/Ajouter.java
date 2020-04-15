@@ -114,8 +114,8 @@ public class Ajouter extends JFrame implements ActionListener {
         Object source = e.getSource();
 
         if (source == valider) {
-            String nomAnimal = nom.getText();
-            String especeAnimal = espece.getText();
+            String nomAnimal = nom.getText().toLowerCase();
+            String especeAnimal = espece.getText().toLowerCase();
             this.appMenagerie.ajouterAnimal(nomAnimal, especeAnimal);
         } else if (source == retour) {
             this.appMenagerie.retour();

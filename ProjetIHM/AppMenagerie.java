@@ -70,33 +70,28 @@ public class AppMenagerie extends JFrame implements ActionListener {
     public void ajouterAnimal(String nom, String espece) {
         Animal animal = new Animal(nom, espece);
         menagerie.ajouterUnAnimal(animal);
-        System.out.println(menagerie.toString());
     }
 
     public void afficher() {
         Afficher afficher = new Afficher(this, menagerie.getAnimaux());
         JPanel panelAfficher = afficher.getJPanel();
         this.refreshPanel(panelAfficher);
-        System.out.println(menagerie.toString());
         menagerie.toString();
     }
 
     public void supprimerAnimal(int index) {
         menagerie.supprimerUnAnimal(index);
-        System.out.println(menagerie.toString());
         this.afficherSupprimer();
     }
 
     public boolean rechercherAnimal(String nom) {
         menagerie.rechercherUnAnimal(nom);
-        System.out.println(menagerie.rechercherUnAnimal(nom));
         return menagerie.rechercherUnAnimal(nom);
     }
 
     public void compterAnimaux() {
         menagerie.getNombreAnimaux();
     }
-
     public static void main(String[] args) {
         new AppMenagerie();
     }

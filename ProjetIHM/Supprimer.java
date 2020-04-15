@@ -11,6 +11,7 @@ public class Supprimer extends JFrame implements ActionListener {
     private JButton retour, supprimer;
     private JLabel label, lblNum;
     private JTextField num;
+    private JList<String> list;
     /**
      *
      */
@@ -18,8 +19,8 @@ public class Supprimer extends JFrame implements ActionListener {
 
     public Supprimer(AppMenagerie appMenagerie, ArrayList<Animal> lesAnimaux) {
         this.appMenagerie = appMenagerie;
-        monPanel = new JPanel(new BorderLayout());
-        // monPanel.setLayout(null);
+        monPanel = new JPanel();
+        monPanel.setLayout(null);
         monPanel.setBackground(Color.white);
 
         retour = new JButton("retour");
@@ -35,20 +36,22 @@ public class Supprimer extends JFrame implements ActionListener {
             lblNum.setFont(new Font("Arial", Font.BOLD, 14));
             num = new JTextField();
 
-            List<String> labels = new ArrayList<>(25);
+            List<String> labels = new ArrayList<>(lesAnimaux.size());
             for (int i = 0; i < lesAnimaux.size(); i++) {
                 labels.add("Animal n°" + i + " : " + lesAnimaux.get(i).getNom().toString());
             }
-            final JList<String> listArea = new JList<String>(labels.toArray(new String[labels.size()]));
-            listArea.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-            listArea.setFont(new Font("Arial", Font.ITALIC, 14));
+            list = new JList<String>(labels.toArray(new String[labels.size()]));
+            list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            list.setFont(new Font("Arial", Font.ITALIC, 14));
             JScrollPane listScroller = new JScrollPane();
-            listScroller.setViewportView(listArea);
-            listArea.setLayoutOrientation(JList.VERTICAL);
+            listScroller.setViewportView(list);
+            list.setLayoutOrientation(JList.VERTICAL);
+            listScroller.setBounds(125, 100, 300, 300);
+            list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
             monPanel.add(listScroller);
 
             supprimer = new JButton("supprimer");
-            supprimer.setBounds(350, 250, 200, 40);
+            supprimer.setBounds(445, 235, 200, 40);
             supprimer.setBackground(new Color(59, 89, 182));
             supprimer.setForeground(Color.WHITE);
             supprimer.setFocusPainted(false);
@@ -62,8 +65,9 @@ public class Supprimer extends JFrame implements ActionListener {
             label = new JLabel();
             label.setHorizontalAlignment(JLabel.CENTER);
             label.setVerticalAlignment(JLabel.CENTER);
-            label.setText("La ménagerie ne contient aucun animaux...");
-            monPanel.add(label, BorderLayout.CENTER);
+            label.setText("La ménagerie ne contient aucun animal...");
+            label.setBounds(290, 180, 350, 40);
+            monPanel.add(label);
         }
         monPanel.add(retour, BorderLayout.SOUTH);
     }
@@ -78,8 +82,14 @@ public class Supprimer extends JFrame implements ActionListener {
         if (source == retour) {
             this.appMenagerie.retour();
         } else if (source == supprimer) {
-            int numAnimal = Integer.parseInt(num.getText());
-            this.appMenagerie.supprimerAnimal(numAnimal);
+            int numAnimal = list.getSelectedIndex();
+            System.out.println("Index selectionné : " + numAnimal);
+            if (list.getSelectedIndices().length > 0) {
+                int[] selectedIndices = list.getSelectedIndices();
+                for (int i = selectedIndices.length - 1; i >= 0; i--) {
+                    this.appMenagerie.supprimerAnimal(numAnimal);
+                }
+            }
         }
     }
 }
