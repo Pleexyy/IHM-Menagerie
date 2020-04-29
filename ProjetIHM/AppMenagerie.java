@@ -39,7 +39,6 @@ public class AppMenagerie extends JFrame implements ActionListener {
         Supprimer supprimer = new Supprimer(this, menagerie.getAnimaux());
         JPanel panelSupprimer = supprimer.getJPanel();
         this.refreshPanel(panelSupprimer);
-
     }
 
     public void afficherRechercher() {

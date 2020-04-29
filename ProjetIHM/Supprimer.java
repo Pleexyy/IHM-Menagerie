@@ -83,7 +83,6 @@ public class Supprimer extends JFrame implements ActionListener {
             this.appMenagerie.retour();
         } else if (source == supprimer) {
             int numAnimal = list.getSelectedIndex();
-            System.out.println("Index selectionné : " + numAnimal);
             if (list.getSelectedIndices().length > 0) {
                 int[] selectedIndices = list.getSelectedIndices();
                 for (int i = selectedIndices.length - 1; i >= 0; i--) {
