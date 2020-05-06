@@ -10,6 +10,7 @@ public class Afficher extends JFrame implements ActionListener {
     private AppMenagerie appMenagerie;
     private JButton retour;
     private JLabel label;
+    private JTable tableau;
     /**
      *
      */
@@ -29,16 +30,22 @@ public class Afficher extends JFrame implements ActionListener {
 
         if (!lesAnimaux.isEmpty()) {
             List<String> labels = new ArrayList<>(25);
+            Object data[][] = new Object[50][50];
             for (int i = 0; i < lesAnimaux.size(); i++) {
                 labels.add("Animal n°" + i + " : " + lesAnimaux.get(i).toString());
+                data[i][0] = lesAnimaux.get(i).getNom();
+                data[i][1] = lesAnimaux.get(i).getEspece();
             }
-            final JList<String> listArea = new JList<String>(labels.toArray(new String[labels.size()]));
-            listArea.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-            listArea.setFont(new Font("Arial", Font.ITALIC, 14));
+            String[] title = { "Nom de l'animal", "Espèce de l'animal" };
+            this.tableau = new JTable(data, title);
+            // final JList<String> listArea = new JList<String>(labels.toArray(new String[labels.size()]));
+            // listArea.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            // listArea.setFont(new Font("Arial", Font.ITALIC, 14));
             JScrollPane listScroller = new JScrollPane();
-            listScroller.setViewportView(listArea);
-            listArea.setLayoutOrientation(JList.VERTICAL);
+            listScroller.setViewportView(tableau);
+            // tableau.setComponentOrientation(JList.VERTICAL);
             monPanel.add(listScroller);
+            // monPanel.add(tableau);
         } else {
             label = new JLabel();
             label.setHorizontalAlignment(JLabel.CENTER);

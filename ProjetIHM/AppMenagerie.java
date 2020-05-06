@@ -68,7 +68,7 @@ public class AppMenagerie extends JFrame implements ActionListener {
 
     public void ajouterAnimal(String nom, String espece) {
         Animal animal = null;
-        if (espece == "Vertebres") {
+        if (espece == "Vertébrés") {
             Vertebres unVertebre = new Vertebres(nom);
             animal = unVertebre;
         } else if (espece == "Mollusques") {

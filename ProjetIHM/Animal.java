@@ -8,7 +8,7 @@ public class Animal {
     }
 
     public Animal() {
-        
+
     }
 
     public String getNom() {
@@ -17,6 +17,10 @@ public class Animal {
 
     public String toString() {
         return this.nom + " " + this.espece;
+    }
+
+    public Object getEspece() {
+        return this.espece;
     }
 
 }

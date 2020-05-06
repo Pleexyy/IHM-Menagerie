@@ -47,7 +47,7 @@ public class Ajouter extends JFrame implements ActionListener {
         // lblEspece.setBounds(475, 150, 200, 40);
         // espece.setBounds(475, 200, 200, 40);
 
-        String s1[] = { "Vertebres", "Mollusques", "Arthropodes" };
+        String s1[] = { "Vertébrés", "Mollusques", "Arthropodes" };
         box = new JComboBox<>(s1);
         box.addActionListener(this);
         box.setBounds(480, 200, 200, 40);
@@ -121,17 +121,6 @@ public class Ajouter extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         
-        
-        System.out.println("Selected  = " + box.getSelectedItem());
-
-        if (box.getSelectedIndex() == 0) {
-            System.out.println("Vertebres");
-        } else if (box.getSelectedIndex() == 1) {
-            System.out.println("Mollusques");
-        } else {
-            System.out.println("Arthropodes");
-        }
-
         if (source == valider) {
             String nomAnimal = nom.getText().toLowerCase();
             String especeAnimal = String.valueOf(box.getSelectedItem());
