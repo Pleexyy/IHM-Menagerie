@@ -38,7 +38,7 @@ public class Supprimer extends JFrame implements ActionListener {
 
             List<String> labels = new ArrayList<>(lesAnimaux.size());
             for (int i = 0; i < lesAnimaux.size(); i++) {
-                labels.add("Animal n°" + i + " : " + lesAnimaux.get(i).getNom().toString());
+                labels.add("Animal n°" + i + " : " + lesAnimaux.get(i).toString());
             }
             list = new JList<String>(labels.toArray(new String[labels.size()]));
             list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

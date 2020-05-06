@@ -30,7 +30,7 @@ public class Afficher extends JFrame implements ActionListener {
         if (!lesAnimaux.isEmpty()) {
             List<String> labels = new ArrayList<>(25);
             for (int i = 0; i < lesAnimaux.size(); i++) {
-                labels.add("Animal n°" + i + " : " + lesAnimaux.get(i).getNom().toString());
+                labels.add("Animal n°" + i + " : " + lesAnimaux.get(i).toString());
             }
             final JList<String> listArea = new JList<String>(labels.toArray(new String[labels.size()]));
             listArea.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

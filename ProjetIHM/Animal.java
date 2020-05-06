@@ -8,6 +8,7 @@ public class Animal {
     }
 
     public Animal() {
+        
     }
 
     public String getNom() {

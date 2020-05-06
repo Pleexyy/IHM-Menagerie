@@ -67,7 +67,17 @@ public class AppMenagerie extends JFrame implements ActionListener {
     }
 
     public void ajouterAnimal(String nom, String espece) {
-        Animal animal = new Animal(nom, espece);
+        Animal animal = null;
+        if (espece == "Vertebres") {
+            Vertebres unVertebre = new Vertebres(nom);
+            animal = unVertebre;
+        } else if (espece == "Mollusques") {
+            Mollusques unMollusque = new Mollusques(nom);
+            animal = unMollusque;
+        } else {
+            Arthropodes unArthropode = new Arthropodes(nom);
+            animal = unArthropode;
+        }
         menagerie.ajouterUnAnimal(animal);
     }
 
@@ -91,6 +101,7 @@ public class AppMenagerie extends JFrame implements ActionListener {
     public void compterAnimaux() {
         menagerie.getNombreAnimaux();
     }
+
     public static void main(String[] args) {
         new AppMenagerie();
     }
