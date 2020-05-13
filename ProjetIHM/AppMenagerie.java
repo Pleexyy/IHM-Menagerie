@@ -9,15 +9,46 @@ public class AppMenagerie extends JFrame implements ActionListener {
     private JFrame frame;
     private Menagerie menagerie;
     private static final long serialVersionUID = 1L;
+    private JMenuBar mb;
+    private JMenu menu;
+    private JMenuItem add, delete, search, count, list, back;
 
     public AppMenagerie() {
         menagerie = new Menagerie();
+
         frame = new JFrame("IHM - Ménagerie");
         frame.setSize(900, 500);
         frame.setResizable(false);
-
+        
         Accueil accueil = new Accueil(this);
         JPanel panelAccueil = accueil.getJPanel();
+
+        add = new JMenuItem("ajouter");
+        delete = new JMenuItem("supprimer");
+        search = new JMenuItem("rechercher");
+        list = new JMenuItem("liste des animaux présents");
+        count = new JMenuItem("nombre d'animaux présents");
+        back = new JMenuItem("retour au menu");
+
+        add.addActionListener(this);
+        delete.addActionListener(this);
+        search.addActionListener(this);
+        list.addActionListener(this);
+        count.addActionListener(this);
+        back.addActionListener(this);
+
+        mb = new JMenuBar();
+        menu = new JMenu("Menu");
+
+        menu.add(add);
+        menu.add(delete);
+        menu.add(search);
+        menu.add(list);
+        menu.add(count);
+        menu.add(back);
+        mb.add(menu);
+        frame.add(mb);
+        frame.setJMenuBar(mb);
 
         frame.getContentPane().add(panelAccueil);
         frame.setVisible(true);
@@ -27,6 +58,24 @@ public class AppMenagerie extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println(e.getSource().toString());
+        if (e.getSource() == add) {
+            afficherAjouter();
+        }
+        if (e.getSource() == delete) {
+            afficherSupprimer();
+        }
+        if (e.getSource() == search) {
+            afficherRechercher();
+        }
+        if (e.getSource() == list) {
+            afficher();
+        }
+        if (e.getSource() == count) {
+            afficherCompter();
+        }
+        if (e.getSource() == back) {
+            retour();
+        }
     }
 
     public void afficherAjouter() {

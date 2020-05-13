@@ -75,7 +75,7 @@ public class Accueil implements ActionListener {
         quitter.setForeground(Color.WHITE);
         quitter.setFocusPainted(false);
         quitter.setFont(new Font("Arial", Font.BOLD, 12));
-        quitter.setBounds(800, 423, 100, 40);
+        quitter.setBounds(800, 402, 100, 40);
         quitter.addActionListener(this);
 
         monPanel.add(lblMenagerie);
@@ -86,7 +86,6 @@ public class Accueil implements ActionListener {
         monPanel.add(afficher);
         monPanel.add(compter);
         monPanel.add(quitter);
-
     }
 
     public JPanel getJPanel() {
